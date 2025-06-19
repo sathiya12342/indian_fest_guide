@@ -1,0 +1,531 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+  <title>Festival Cards</title>
+  <link rel="icon" href="/image/icon2.png">
+  <script src="https://kit.fontawesome.com/05e2e34ac1.js" crossorigin="anonymous"></script>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    
+    body {
+      scroll-behavior: smooth;
+      background-color: aliceblue;
+      font-family: Georgia, 'Times New Roman', Times, serif;
+      color: #333;
+      line-height: 1.4;
+    }
+    
+    .main-container {
+      max-width: 1300px;
+      margin: 0 auto;
+      padding: 20px;
+    }
+    
+    h1 {
+      text-align: left;
+      margin: 15px 0;
+      color: #2c3e50;
+    }
+
+    .main-container p {
+      text-align: left;
+      margin-bottom: 20px;
+      color: #555;
+    }
+    
+    .main-container>p {
+      text-align: left;
+      margin-bottom: 20px;
+      color: #555;
+      font-size: 1.1em;
+      font-weight: bolder;
+    }
+    .state {
+      background-color: #accfe6;
+      border-radius: 10px;
+      box-shadow: 5px 8px rgba(209, 201, 201, 0.1);
+      padding: 15px;
+      margin-bottom: 30px;
+      transition: all 7s ease-in-out;
+    }
+    
+    .section-title {
+      margin: 10px 0 20px;
+      padding-bottom: 5px;
+      border-bottom: 2px solid #2c3e50;
+      color: #2c3e50;
+    }
+    
+    .state-section {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      gap: 20px;
+    }
+    
+    .cards-wrapper {
+      flex: 2;
+      min-width: 300px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+      justify-content: center;
+    }
+    
+    .card {
+      position: relative;
+      width: 220px;
+      height: 300px;
+      perspective: 1000px;
+      animation: float 5s ease-in-out infinite;
+    }
+    
+    .card:hover {
+      animation-play-state: paused;
+    }
+    
+    @keyframes float {
+      0% {
+        transform: translateY(0px);
+      }
+      50% {
+        transform: translateY(-5px);
+      }
+      100% {
+        transform: translateY(0px);
+      }
+    }
+    
+    .card .face1, .card .face2 {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      backface-visibility: hidden;
+      border-radius: 8px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      padding: 15px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      transition: transform 0.9s ease;
+    }
+    
+    .card .face2 {
+      background-color: #fff;
+      color: #ffffff;
+      font-size: 20px;
+      font-weight: bold;
+      text-align: center;
+      text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.8);
+    }
+    
+    .card .face1 {
+      background-color: #dee3e7;
+      color: rgb(34, 76, 87);
+      transform: rotateY(180deg);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 1em;
+      text-align: center;
+      overflow: auto;
+    }
+    
+    .card:hover .face2 {
+      transform: rotateY(-180deg);
+    }
+    
+    .card:hover .face1 {
+      transform: rotateY(0deg);
+    }
+    
+    .traditions {
+      flex: 1;
+      min-width: 250px;
+      height: auto;
+      background-color: #f0f0f0;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    }
+    
+    .traditions h3 {
+      margin-bottom: 15px;
+      color: #2c3e50;
+    }
+    
+    .traditions ul {
+      padding-left: 20px;
+    }
+    
+    .traditions li {
+      margin-bottom: 8px;
+    }
+    
+    .arrow-container {
+      text-align: left;
+      margin-bottom: 20px;
+    }
+    
+    .arrow-button {
+      font-size: 30px;
+      color: white;
+      background-color: #3498db;
+      padding: 10px 15px;
+      border-radius: 10px;
+      text-decoration: none;
+      display: inline-block;
+      transition: background-color 0.3s ease;
+    }
+    
+    .arrow-button:hover {
+      background-color: #738ea0;
+    }
+    
+    .pongal { background-image: url('/image/pongal2.jpg'); }
+    .Thaipusam { background-image: url('/image/thaipusam.jpg'); }
+    .Chithirai { background-image: url('/image/meenakshi.jpg'); }
+    .onam { background-image: url('/image/onam1.jpg'); }
+    .Vishu { background-image: url('/image/vishu.jpg'); }
+    .ThrissurPooram { background-image: url('/image/Thrissur-Pooram.jpg'); }
+    .navratri { background-image: url('/image/navaratri.jpg'); }
+    .Uttarayan { background-image: url('/image/Uttarayan.jpg'); }
+    .Janmashtami { background-image: url('/image/Janmashtami.jpg'); }
+    .teej { background-image: url('/image/teej.jpg'); }
+    .Gangaur { background-image: url('/image/Gangaur1.jpg'); }
+    .Desert { background-image: url('/image/Desert.jpg'); }
+    .baisakhi { background-image: url('/image/baisakhi.jpg'); }
+    .Gurpurab { background-image: url('/image/Gurpurab.jpg'); }
+    .Lohri { background-image: url('/image/lohri.jpg'); }
+    .Diwali { background-image: url('/image/Diwal.jpg'); }
+    .gudipadwa { background-image: url('/image/gudipadwa.jpg'); }
+    .ganeshchaturthi { background-image: url('/image/ganesh-chaturthi.jpg'); }
+    .durgapuja { background-image: url('/image/durga-puja.jpg'); }
+    .kalipuja { background-image: url('/image/kali-puja.jpg'); }
+    .poilabaisakh { background-image: url('/image/poila-baisakh.jpg'); }
+    
+    /* All festival backgrounds common styles */
+    .pongal, .Thaipusam, .Chithirai, .onam, .Vishu, .ThrissurPooram,
+    .navratri, .Uttarayan, .Janmashtami, .teej, .Gangaur, .Desert,
+    .baisakhi, .Gurpurab, .Lohri, .Diwali, .gudipadwa, .ganeshchaturthi,
+    .durgapuja, .kalipuja, .poilabaisakh {
+      background-size: cover;
+      background-position: center;
+    }
+    
+    /* Responsive adjustments */
+    @media screen and (max-width: 1024px) {
+      .cards-wrapper {
+        justify-content: space-around;
+      }
+      
+      .card {
+        width: 200px;
+        height: 280px;
+      }
+    }
+    
+    @media screen and (max-width: 768px) {
+      .state-section {
+        flex-direction: column;
+      }
+      
+      .cards-wrapper {
+        width: 100%;
+        justify-content: center;
+      }
+      
+      .traditions {
+        width: 100%;
+      }
+      
+      .card {
+        width: 220px;
+        height: 300px;
+      }
+    }
+    
+    @media screen and (max-width: 600px) {
+      .main-container {
+        padding: 15px;
+      }
+      
+      .card {
+        width: 100%;
+        max-width: 300px;
+        height: 250px;
+      }
+      
+      .card .face1, .card .face2 {
+        padding: 10px;
+      }
+      
+      .card .face2 {
+        font-size: 18px;
+      }
+      
+      .card .face1 {
+        font-size: 0.9em;
+      }
+      
+      .arrow-button {
+        font-size: 24px;
+        padding: 8px 12px;
+      }
+    }
+    
+    @media screen and (max-width: 480px) {
+      h1 {
+        font-size: 1.8rem;
+      }
+      
+      .section-title {
+        font-size: 1.4rem;
+      }
+      
+      .arrow-button {
+        font-size: 20px;
+        padding: 6px 10px;
+      }
+      
+      .traditions {
+        padding: 15px;
+      }
+      
+      .traditions h3 {
+        font-size: 1.2rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="main-container">
+    <h1>Festivals of India</h1>
+    <div class="arrow-container">
+      <a href="/home.html" class="arrow-button">
+        <i class="fa-solid fa-square-caret-left"></i>
+      </a>
+    </div>
+    <p>Explore the vibrant festivals and traditions from different states of India.</p>
+    
+    <!-- Tamil Nadu -->
+    <div class="state">
+      <h2 class="section-title" id="tamil">Tamil Nadu</h2>
+      <div class="state-section">
+        <div class="cards-wrapper">
+          <div class="card">
+            <div class="face1"><h2>Pongal</h2><p>Harvest festival with kolams, sugarcane, and gratitude to the Sun God.</p></div>
+            <div class="face2 pongal">Pongal</div>
+          </div>
+          <div class="card">
+            <div class="face1"><h2>Thaipusam</h2><p>Kavadi rituals honoring Lord Murugan with piercing and devotion.</p></div>
+            <div class="face2 Thaipusam">Thaipusam</div>
+          </div>
+          <div class="card">
+            <div class="face1"><h2>Chithirai</h2><p>Grand Madurai festival celebrating Meenakshi's celestial wedding.</p></div>
+            <div class="face2 Chithirai">Chithirai</div>
+          </div>
+        </div>
+        <div class="traditions">
+          <h3>Traditions</h3>
+          <ul>
+            <li><strong>Festival:</strong> Pongal is the main harvest festival, celebrated with cooking of rice and sugarcane.</li>
+            <li><strong>Dance:</strong> Bharatanatyam is a classical dance form originating here.</li>
+            <li><strong>Temple Culture:</strong> Rich Dravidian temple architecture (e.g., Meenakshi Temple).</li>
+            <li><strong>Clothing:</strong> Men wear veshti (dhoti), and women wear sarees.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Kerala -->
+    <div class="state">
+      <h2 class="section-title" id="kerala">Kerala</h2>
+      <div class="state-section">
+        <div class="cards-wrapper">
+          <div class="card">
+            <div class="face1"><h2>Onam</h2><p>10-day harvest festival with Pookalam, Vallam Kali, and Onasadya.</p></div>
+            <div class="face2 onam">Onam</div>
+          </div>
+          <div class="card">
+            <div class="face1"><h2>Vishu</h2><p>New Year celebration with Vishukkani and family feasts.</p></div>
+            <div class="face2 Vishu">Vishu</div>
+          </div>
+          <div class="card">
+            <div class="face1"><h2>Thrissur Pooram</h2><p>Grand temple festival held in Thrissur in April-May. Famous for decorated elephants, percussion music (chenda melam), and fireworks.</p></div>
+            <div class="face2 ThrissurPooram">Thrissur Pooram</div>
+          </div>
+        </div>
+        <div class="traditions">
+          <h3>Traditions</h3>
+          <ul>
+            <li><strong>Festival:</strong> Onam is the biggest festival, marked by boat races and floral carpets (Pookalam).</li>
+            <li><strong>Dance:</strong> Kathakali and Mohiniyattam are famous dance forms.</li>
+            <li><strong>Backwaters:</strong> Known for houseboat rides and scenic backwaters.</li>
+            <li><strong>Clothing:</strong> Traditional white kasavu sarees and mundu for men.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- Gujarat -->
+    <div class="state">
+      <h2 class="section-title" id="gujarat">Gujarat</h2>
+      <div class="state-section">
+        <div class="cards-wrapper">
+          <div class="card">
+            <div class="face1"><h2>Navratri</h2><p>Nine nights of Garba and Dandiya Raas dances in vibrant attire.</p></div>
+            <div class="face2 navratri">Navratri</div>
+          </div>
+          <div class="card">
+            <div class="face1"><h2>Uttarayan</h2><p>Kite festival celebrated with music, food, and colorful skies.</p></div>
+            <div class="face2 Uttarayan">Uttarayan</div>
+          </div>
+          <div class="card">
+            <div class="face1"><h2>Janmashtami</h2><p>Celebrates Lord Krishna's birth, especially grand in Dwarka (his legendary kingdom). Includes Ras Leela, Bhajans, and temple decorations.</p></div>
+            <div class="face2 Janmashtami">Janmashtami</div>
+          </div>
+        </div>
+        <div class="traditions">
+          <h3>Traditions</h3>
+          <ul>
+            <li><strong>Festival:</strong> Navratri with Garba and Dandiya Raas dances.</li>
+            <li><strong>Clothing:</strong> Colorful chaniya choli (women) and kediyu (men).</li>
+            <li><strong>Crafts:</strong> Famous for Bandhani (tie-dye), mirror work, and embroidery.</li>
+            <li><strong>Cuisine:</strong> Known for dhokla, thepla, khakhra, and farsan (snacks)</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Rajasthan -->
+    <div class="state">
+      <h2 class="section-title" id="rajasthan">Rajasthan</h2>
+      <div class="state-section">
+        <div class="cards-wrapper">
+          <div class="card">
+            <div class="face1"><h2>Teej</h2><p>Monsoon festival with swings, songs, and traditional attire.</p></div>
+            <div class="face2 teej">Teej</div>
+          </div>
+          <div class="card">
+            <div class="face1"><h2>Gangaur</h2><p>Celebration of marital bliss with processions and rituals.</p></div>
+            <div class="face2 Gangaur">Gangaur</div>
+          </div>
+          <div class="card">
+            <div class="face1"><h2>Desert</h2>
+              <p>Held in February in the Thar Desert, Jaisalmer. Showcases Rajasthani culture with folk dances, puppet shows, camel races, and turban tying competitions.</p></div>
+            <div class="face2 Desert">Desert</div>
+          </div>
+        </div>
+        <div class="traditions">
+          <h3>Traditions</h3>
+          <ul>
+            <li><strong>Festival:</strong> Pushkar Fair, Teej, and Desert Festival are popular.</li>
+            <li><strong>Dance:</strong> Ghoomar and Kalbeliya are traditional dances</li>
+            <li><strong>Clothing:</strong> Bright ghagras, odhnis, and turbans with mirror work</li>
+            <li><strong>Cuisine:</strong> Dal baati churma, gatte ki sabzi, and spicy snacks.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Punjab -->
+    <div class="state">
+      <h2 class="section-title" id="punjab">Punjab</h2>
+      <div class="state-section">
+        <div class="cards-wrapper">
+          <div class="card">
+            <div class="face1"><h2>Baisakhi</h2><p>Harvest festival with Bhangra, Gidda, and community feasts.</p></div>
+            <div class="face2 baisakhi">Baisakhi</div>
+          </div>
+          <div class="card">
+            <div class="face1"><h2>Gurpurab</h2><p>Celebration of Guru Nanak's birth with prayers and processions.</p></div>
+            <div class="face2 Gurpurab">Gurpurab</div>
+          </div>
+          <div class="card">
+            <div class="face1"><h2>Lohri</h2><p>Celebrated on January 13, especially in North India. Marks the end of winter and the harvesting of sugarcane. Celebrated with bonfires, folk songs, dance, and foods like rewari, gajak, and peanuts.</p></div>
+            <div class="face2 Lohri">Lohri</div>
+          </div>
+        </div>
+        <div class="traditions">
+          <h3>Traditions</h3>
+          <ul>
+            <li><strong>Festival:</strong> Baisakhi is the harvest festival; also celebrates Lohri with bonfires.</li>
+            <li><strong>Dance:</strong> Bhangra and Gidda are energetic and popular.</li>
+            <li><strong>Clothing:</strong> Salwar kameez with phulkari embroidery, turbans for men.</li>
+            <li><strong>Cuisine:</strong> Makki di roti and sarson da saag, lassi, butter chicken.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Maharashtra -->
+    <div class="state">
+      <h2 class="section-title" id="maharashtra">Maharashtra</h2>
+      <div class="state-section">
+        <div class="cards-wrapper">
+          <div class="card">
+            <div class="face1"><h2>Ganesh Chaturthi</h2><p>Celebration of Lord Ganesha with grand processions and eco-friendly idols.</p></div>
+            <div class="face2 ganeshchaturthi">Ganesh Chaturthi</div>
+          </div>
+          <div class="card">
+            <div class="face1"><h2>Diwali</h2><p>Festival of lights celebrated with diyas, rangoli, and sweets.</p></div>
+            <div class="face2 Diwali">Diwali</div>
+          </div>
+          <div class="card">
+            <div class="face1"><h2>Gudi Padwa</h2><p>Marathi New Year, celebrated in March-April. People raise a Gudi (decorated flag) outside homes to symbolize victory and prosperity. Special dishes like Puran Poli are made.</p></div>
+            <div class="face2 gudipadwa">Gudi Padwa</div>
+          </div>
+        </div>
+        <div class="traditions">
+          <h3>Traditions</h3>
+          <ul>
+            <li><strong>Festival:</strong> Ganesh Chaturthi is the biggest state-wide celebration.</li>
+            <li><strong>Dance:</strong> Lavani and Tamasha are traditional dance forms.</li>
+            <li><strong>Clothing:</strong> Nauvari sarees for women, dhoti-kurta and pheta for men.</li>
+            <li><strong>Cuisine:</strong> Vada pav, pav bhaji, puran poli, poha.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    
+    <!-- West Bengal -->
+    <div class="state">
+      <h2 class="section-title" id="westbengal">West Bengal</h2>
+      <div class="state-section">
+        <div class="cards-wrapper">
+          <div class="card">
+            <div class="face1"><h2>Durga Puja:</h2><p>5-day grand celebration with pandals, dance, and rituals.</p></div>
+            <div class="face2 durgapuja">Durga Puja:</div>
+          </div>
+          <div class="card">
+            <div class="face1"><h2>Poila Baisakh:</h2><p>Bengali New Year celebrated with traditional sweets and cultural events.</p></div>
+            <div class="face2 poilabaisakh">Poila Baisakh:</div>
+          </div>
+          <div class="card">
+            <div class="face1"><h2>Kali Puja:</h2><p>Celebrated during Diwali (October-November). Worship of Goddess Kali, especially in Kolkata and Dakshineswar. Homes and temples are lit with diyas and candles.</p></div>
+            <div class="face2 kalipuja">Kali Puja</div>
+          </div>
+        </div>
+        <div class="traditions">
+          <h3>Traditions</h3>
+          <ul>
+            <li><strong>Festival:</strong> Durga Puja is the most grandly celebrated festival.</li>
+            <li><strong>Dance & Music:</strong> Rabindra Sangeet, Baul folk music, Chhau dance.</li>
+            <li><strong>Clothing:</strong> Bengali sarees (e.g., tant, Baluchari), dhoti-kurta for men.</li>
+            <li><strong>Cuisine:</strong> Fish curry, sweets like rasgulla and sandesh.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
