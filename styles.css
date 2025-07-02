@@ -89,10 +89,10 @@ body {
   filter: brightness(0.75);
   transition: opacity 1s ease-in-out;
 }
-.slideshow-container div:nth-child(1) { background-image: url('/image/lohri-celebration-india.jpg'); animation-delay: 0s; }
-.slideshow-container div:nth-child(2) { background-image: url('/image/pongal3.jpg'); animation-delay: 5s; }
-.slideshow-container div:nth-child(3) { background-image: url('/image/onam.jpg'); animation-delay: 10s; }
-.slideshow-container div:nth-child(4) { background-image: url('/image/holi.jpg'); animation-delay: 15s; }
+.slideshow-container div:nth-child(1) { background-image: url('./image/lohri-celebration-india.jpg'); animation-delay: 0s; }
+.slideshow-container div:nth-child(2) { background-image: url('./image/pongal3.jpg'); animation-delay: 5s; }
+.slideshow-container div:nth-child(3) { background-image: url('./image/onam.jpg'); animation-delay: 10s; }
+.slideshow-container div:nth-child(4) { background-image: url('./image/holi.jpg'); animation-delay: 15s; }
 
 @keyframes slideShow {
   0%, 30%, 100% { opacity: 0; }
